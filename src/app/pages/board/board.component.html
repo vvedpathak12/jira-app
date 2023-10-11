@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row mt-4">
+  <h3 class="projectTitle">{{selectedProjectData?.projectName}}</h3>
+    <div class="col-md-1"></div>
+    <div class="col-md-3" id="column" *ngFor="let status  of status" (dragover)="onDragOver($event)" (drop)="onDrop($event, status)">
+      <h6>{{status}}</h6>
+      <div class="card" id="ticketCard" *ngFor="let ticket of filterByStatus(status)" draggable="true"
+        (dragstart)="onDragStart(ticket)">
+        <span>{{ticket.summary}}</span>
+        <div class="row ticketInfo">
+          <div class="col-md-6" id="colTicket1">
+            <i class="fa fa-check-square me-1" style="color: #269AFF;" aria-hidden="true"></i>{{ticket.ticketId}}
+          </div>
+          <div class="col-md-6 text-end" id="colTicket2">
+            <p>{{ticket.assignedTo}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="parent">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-4 col-md-4 offset-md-4">
+        <div class="login-box">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <img src="assets/images/jira-logo.png" id="login-logo" alt="Jira Logo">
+            </div>
+          </div>
+          <div class="login-form">
+            <h2 class="text-center">Welcome back!</h2>
+            <p class="text-center">Please sign in to your account.</p>
+            <form #loginFrm="ngForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" [(ngModel)]="loginObj.emailId"
+                      #email="ngModel" required pInputText placeholder="Enter your email">
+                    <div class="text-danger pt-1" *ngIf="email.touched || email.dirty">
+                      <span *ngIf="email.errors?.['required']"><i
+                          class="pi pi-exclamation-triangle mt-1"></i>&nbsp;Email Required</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="password" [(ngModel)]="loginObj.password"
+                      #password="ngModel" required pInputText placeholder="Password">
+                    <div class="text-danger pt-1" *ngIf="password.touched || password.dirty">
+                      <span *ngIf="password.errors?.['required']"><i
+                          class="pi pi-exclamation-triangle mt-1"></i>&nbsp;Password Required</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-block" style="width: 100%; border-radius: 0%;"
+                    (click)="onLogin()">
+                    <ng-container *ngIf="!isApiCallInProgress; else signingIn">
+                      Sign In <i class="pi pi-arrow-right ps-2"></i>
+                    </ng-container>
+                    <ng-template #signingIn>
+                      Signing In <span class="spinner-border spinner-border-sm ps-2"></span>
+                    </ng-template>
+                  </button>
+                  <div class="forgot-password">
+                    <a href="#">Forgot your password?</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

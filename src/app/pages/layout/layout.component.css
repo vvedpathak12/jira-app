@@ -1,0 +1,78 @@
+.parent {
+  padding-top: 60px;
+}
+
+.navbar {
+  background-color: #FFFFFF;
+  /* color: black; */
+  border-bottom: solid rgb(243, 239, 239);
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-link {
+  color: #727D93;
+}
+
+.jiraLogo {
+  height: 26px;
+  width: 76px;
+  margin: 0px 30px 0px 16px;
+}
+
+.activeLink {
+  color: #2A6ED4 !important;
+}
+
+.createBtn {
+  background: #0052CC;
+  color: #FFFFFF;
+  margin: 5px 0px 0px 0px;
+  padding: 4px 10px 4px 10px;
+}
+
+.logOutBtn {
+  background: #0052CC;
+  color: #FFFFFF;
+  margin: 5px 0px 0px 15px;
+  padding: 4px 10px 4px 10px;
+}
+
+input.form-control {
+  height: 33px !important;
+}
+
+.searchBox {
+  margin: 0px 0px 0px 90px;
+}
+
+label {
+  font-size: small;
+  color: #727D93;
+}
+
+label i {
+  font-size: smaller;
+}
+
+.cancelBtn {
+  color: #727D93;
+  background: #FFFFFF;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.cancelBtn:hover {
+  color: #727D93;
+  background: #FFFFFF;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

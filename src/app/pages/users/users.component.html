@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row mt-2">
+    <div class="col-md-12 text-end">
+      <button pButton pRipple class="p-button-primary p-button-sm me-2" label="Create New User"
+        (click)="onCreateUser()"></button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-4 mb-5" *ngFor="let user of userArr">
+      <div class="card">
+        <div class="card-header bg-header text-white">
+          <div class="row">
+            <div class="col-md-12">
+              <span>User:- <strong>{{user.fullName}}</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-7">
+              Email:- <strong>{{user.emailId}}</strong>
+            </div>
+            <div class="col-md-5">
+              Password:- <strong>{{user.password}}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-12 text-end">
+              <button pButton pRipple class="p-button-warning p-button-sm me-2" label="Edit"
+                (click)="onEdit(user)"></button>
+              <button pButton pRipple class="p-button-danger p-button-sm me-2" label="Delete"
+                (click)="onDelete(user)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal starts -->
+  <div class="row">
+    <div class="col-md-12">
+      <form #projectForm="ngForm">
+        <p-dialog header="Create User" [(visible)]="displayModalUser" [modal]="true" [style]="{width: '50vw'}"
+          [breakpoints]="{'960px': '75vw', '640px': '95vw'}" [baseZIndex]="10000" [draggable]="false"
+          [resizable]="false">
+          <div class="row my-2">
+            <div class="col-md-12">
+              <label class="fw-bold my-1">Full Name</label>
+              <input type="text" id="float-input" class="form-control" name="fullName" [(ngModel)]="userObj.fullName"
+                required pInputText placeholder="Enter Full Name">
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-6">
+              <label class="fw-bold my-1">Email</label>
+              <input type="text" id="float-input" class="form-control" name="emailId" [(ngModel)]="userObj.emailId"
+                required pInputText placeholder="Enter Email">
+            </div>
+            <div class="col-md-6">
+              <label class="fw-bold my-1">password</label>
+              <input type="text" id="float-input" class="form-control" name="password" [(ngModel)]="userObj.password"
+                required pInputText placeholder="Enter Password">
+            </div>
+          </div>
+
+          <ng-template pTemplate="footer">
+            <button pButton pRipple class="p-button-success p-button-sm" label="Save" *ngIf="userObj.userId == 0"
+              (click)="onSaveUser()">
+              <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm me-2"></span>
+            </button>
+            <button pButton pRipple class="p-button-warning p-button-sm" label="Update" *ngIf="userObj.userId !== 0"
+              (click)="onUpdateUser()">
+              <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm me-2"></span>
+            </button>
+            <button pButton pRipple icon="pi pi-times" class="p-button-danger p-button-sm" label="Cancel"
+              (click)="onCancel()"></button>
+          </ng-template>
+        </p-dialog>
+      </form>
+    </div>
+  </div>
+  <!-- modal ends -->
+</div>

@@ -1,0 +1,170 @@
+<div class="parent">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+      <img src="assets/images/menu.png" style="height: 32px;">
+      <img src="assets/images/jira.png" class="jiraLogo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" href="#">Your work</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+              aria-expanded="false">Your work</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+              <li><a class="dropdown-item" routerLink="projects" routerLinkActive="activeLink">Projects</a></li>
+              <li><a class="dropdown-item" routerLink="users" routerLinkActive="activeLink">Users</a></li>
+              <li><a class="dropdown-item" routerLink="board" routerLinkActive="activeLink">Boards</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+              aria-expanded="false">Projects</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+              <li><a class="dropdown-item hand" *ngFor="let project of projectArr" (click)="setProject(project)">{{project.projectName}}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Issues and
+              filters</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button"
+              aria-expanded="false">Dashboards</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Teams</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Apps</a>
+            <ul class="dropdown-menu" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+            </ul>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-sm createBtn" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+              (click)="onCreateNewTicket()">Create</button>
+          </li>
+          <li class="nav-item">
+            <div class="flex my-1">
+              <span class="p-input-icon-left searchBox">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" class="form-control" placeholder="Search" />
+              </span>
+            </div>
+          </li>
+          <li class="nav-item">
+            <i class="fa fa-bell fs-5 hand" style="color: #6B778C;margin-top: 10px;" aria-hidden="true"></i>
+            <i class="fa fa-question-circle hand fs-5 ms-3" style="color: #6B778C;margin-top: 10px;"
+              aria-hidden="true"></i>
+            <i class="fa fa-cog fs-5 hand ms-3" style="color: #6B778C;margin-top: 10px;" aria-hidden="true"></i>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-sm logOutBtn" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+              (click)="onLogOut()">Log Out&nbsp;<i class="fa fa-sign-out ms-1" aria-hidden="true"></i></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- modal starts -->
+<div class="row">
+  <div class="col-md-12">
+    <form #projectForm="ngForm">
+      <p-dialog header="Create issue" [(visible)]="displayModalCreateTicket" [modal]="true" [style]="{width: '50vw'}"
+        [breakpoints]="{'960px': '75vw', '640px': '95vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <div class="row mt-1">
+          <div class="col-md-6">
+            <label class="fw-bold my-1">Project <span class="text-danger">*</span></label>
+            <p-dropdown [options]="projectArr" [(ngModel)]="ticketObj.projectId" optionLabel="projectName" name="projectName"
+              optionValue="projectId" [filter]="true" filterBy="projectName" [showClear]="ticketObj.projectId !== 0"
+              placeholder="Select Project" [editable]="true" [style]="{'width':'100%'}" [appendTo]="'body'">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label class="fw-bold my-1">Issue type <span class="text-danger">*</span></label>
+            <p-dropdown [options]="issueTypes" name="issueTypes" placeholder="Issue type" [editable]="true"
+              [style]="{'width':'100%'}" [appendTo]="'body'">
+            </p-dropdown>
+          </div>
+          <div class="col-md-6">
+            <label class="fw-bold my-1">Status <i class="pi pi-exclamation-circle"></i></label>
+            <p-dropdown [options]="status" [(ngModel)]="ticketObj.status" name="status" placeholder="Status"
+              [editable]="true" [style]="{'width':'100%'}" [appendTo]="'body'">
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <label class="fw-bold my-1">Summary <span class="text-danger">*</span></label>
+            <input type="text" id="float-input" class="form-control" name="summary" [(ngModel)]="ticketObj.summary"
+              pInputText>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <label class="fw-bold my-1">Description</label>
+            <p-editor name="description" required [(ngModel)]="ticketObj.description"
+              [style]="{'height':'100px'}"></p-editor>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label class="fw-bold my-1">Assignee <span class="text-danger">*</span></label>
+            <p-dropdown [options]="userArr" [(ngModel)]="ticketObj.assignedTo" optionLabel="fullName" name="assignee"
+              optionValue="userId" [filter]="true" filterBy="fullName" [showClear]="true" placeholder="Assignee"
+              [editable]="true" [style]="{'width':'100%'}" [appendTo]="'body'">
+            </p-dropdown>
+          </div>
+          <div class="col-md-6">
+            <label class="fw-bold my-1">Reporter <span class="text-danger">*</span></label>
+            <p-dropdown [options]="userArr" [(ngModel)]="ticketObj.createdBy" optionLabel="fullName" name="createdBy"
+              optionValue="userId" [filter]="true" filterBy="fullName" [showClear]="ticketObj.createdBy !== 0" placeholder="Reporter"
+              [editable]="true" [style]="{'width':'100%'}" [appendTo]="'body'">
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <label class="fw-bold my-1">Attachment</label>
+            <input type="file" class="form-control" name="attachment">
+          </div>
+        </div>
+
+        <ng-template pTemplate="footer">
+          <button pButton pRipple class="cancelBtn p-button-sm me-2" label="Cancel"
+          (click)="onCancel()"></button>
+          <button pButton pRipple class="p-button-info p-button-sm" label="Create" *ngIf="ticketObj.ticketId == 0"
+            (click)="onSaveTicket()">
+            <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm me-2"></span>
+          </button>
+          <button pButton pRipple class="p-button-warning p-button-sm" label="Update" *ngIf="ticketObj.ticketId !== 0"
+            (click)="onUpdateTicket()">
+            <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm me-2"></span>
+          </button>
+
+        </ng-template>
+      </p-dialog>
+    </form>
+  </div>
+</div>
+<!-- modal ends -->
+
+<router-outlet></router-outlet>

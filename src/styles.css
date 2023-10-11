@@ -1,1 +1,89 @@
 /* You can add global styles to this file, and also import other style files */
+input.form-control {
+  height: 40px !important;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.text-danger {
+  font-size: 14px;
+}
+
+.text-danger .pi {
+  font-size: 12px;
+}
+
+.p-toast-message {
+  max-height: auto;
+}
+
+.p-toast-title {
+  font-size: 14px;
+}
+
+.p-toast-message-text {
+  font-size: 14px;
+  max-width: 300px;
+  /* Adjust the value as needed */
+  word-wrap: break-word;
+}
+
+.p-dialog-footer .p-confirm-dialog-reject {
+  background: #eb2f2f;
+  border: none;
+}
+
+.p-dialog-footer .p-confirm-dialog-reject:hover {
+  background: #DC2626 !important;
+}
+
+.p-dialog-footer .p-confirm-dialog-accept {
+  background: #19a262;
+  border: none;
+}
+
+.p-dialog-footer .p-confirm-dialog-accept:hover {
+  background: #0f8b51 !important;
+}
+
+.p-button.p-button-sm {
+  font-size: 0.875rem;
+  padding: 5px 12px 5px 12px;
+}
+
+.bg-header {
+  background-color: rgb(44, 41, 41);
+}
+
+.p-dropdown .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  height: 40px;
+  line-height: 30px;
+}
+
+.p-dropdown {
+  height: 36px !important;
+}
+
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+  font-size: 18px;
+  padding: 3px 3px 3px 7px;
+}
+
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter .p-inputtext {
+  height: 20px;
+}
+
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter .p-dropdown-trigger {
+  height: 20px;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  height: 36px;
+  line-height: 24px;
+}
+
+.p-dropdown-panel .p-dropdown-items {
+  padding: 0rem;
+}

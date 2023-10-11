@@ -1,0 +1,52 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+h6 {
+  text-transform: uppercase;
+  padding: 0px 0px 6px 10px;
+  color: grey;
+  font-weight: 600;
+}
+
+#column {
+  flex: 1;
+  padding: 10px 5px 10px 5px;
+  margin: 10px;
+  background-color: #F4F5F7;
+  border-radius: 8px;
+  min-height: 600px;
+}
+
+.card span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card p{
+  color: grey;
+}
+
+.ticketInfo{
+  margin: 30px 0px 0px 0px;
+}
+
+#ticketCard{
+  padding: 20px 20px 1px 20px;
+}
+
+#colTicket1{
+  padding-left: 0 !important;
+}
+
+#colTicket2{
+  padding-right: 0 !important;
+}
+
+.projectTitle{
+  margin: 30px 0px 14px 8%;
+}
